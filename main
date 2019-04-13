@@ -1,0 +1,65 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+void die() {
+	exit(0);
+}
+
+string mandarin(vector<string>mand ,int place) {
+ 			
+	return mand.at(place);
+}
+int main() {
+
+	vector<string> mand;
+	mand.push_back( ""); 
+	mand.push_back( "yi"); 
+	mand.push_back( "er"); 
+	mand.push_back( "san"); 
+	mand.push_back( "si"); 
+	mand.push_back( "wu"); 
+	mand.push_back( "liu"); 
+	mand.push_back( "qi"); 
+	mand.push_back( "ba"); 
+	mand.push_back( "jiu"); 
+	mand.push_back( "shi"); 
+	
+	int x = 0;
+	int y = 0;
+	int z = 0;
+	
+	cout << "Please enter a number that you want to count up to in Mandarin.";
+	cin >> x;
+	int max = x;
+	if (!cin || x < 0) die();
+	
+	cout << "Please enter what number to start with:";
+	cin >> y;
+	int start = y;
+	if (!cin || y < 0) die(); 
+	if (start >= max) die();
+	
+	cout << "What step size do you want to use?\n";
+	cin >> z;
+	int step = z;
+	if (!cin) die();
+
+	if (start == 99990) {
+		for (int i = 0; i < 10; i++) {
+			cout << i + 99990 << " " << "jiu wan jiu qian jiu bai jiu shi " << mandarin(mand, i % 10) << endl;
+		}
+		return(0);
+	}
+
+	for (int i = start; i <= max; i += step) {
+		if (i == 0) cout << "0 ling" << endl;
+		if (i < 10 and i != 0) cout << i  << " " << mandarin(mand, i % 10) << endl;
+		if (i >= 10 and i < 20) {
+			cout << i << " " << "shi " << mandarin(mand, i % 10) << endl;
+		}
+		if (i >= 20) cout << i << " " << mandarin(mand, i / 10) << " shi "<< mandarin(mand, i % 10) << endl;
+	}
+}
+
